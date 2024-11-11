@@ -1,12 +1,11 @@
 from machine import Pin
-import time
+from time import sleep
 
-# Configuración del pin al que está conectado el LED
-led = Pin(2, Pin.OUT)  # Cambia el número 2 por el pin que estás usando
+L1 = Pin(19, Pin.OUT)
 
-# Encender y apagar el LED en intervalos
 while True:
-    led.value(1)  # Enciende el LED
-    time.sleep(1) # Espera 1 segundo
-    led.value(0)  # Apaga el LED
-    time.sleep(1) # Espera 1 segundo
+    L1.on()
+    sleep(0.5)
+    L1.off()
+    sleep(0.5)
+    
