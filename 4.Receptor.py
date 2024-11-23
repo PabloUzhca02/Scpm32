@@ -27,4 +27,3 @@ while True:
     elif msg == b'OFF':
         led.off()  # Apaga el LED
         print("LED apagado")
-
