@@ -50,7 +50,7 @@ while True:
             # Muestra el segundo nombre
             lcd_display.clear()
             lcd_display.putstr("Pablo Uzhca")  # Muestra el segundo nombre
-            print("Mensaje recibido: Nombre 2: Juan")
+            print("Mensaje recibido: Nombre 2: ")
             time.sleep(2)  # Espera 2 segundos
 
             # Al terminar, espera a que el pulsador sea presionado de nuevo para empezar la secuencia
