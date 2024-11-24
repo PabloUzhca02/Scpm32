@@ -1,52 +1,41 @@
 import network
-from machine import Pin
 import espnow
-import utime
+from machine import Pin
 
-
-# A WLAN interface must be active to send()/recv()
-sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
+# Inicializa la interfaz WiFi en modo Station
+sta = network.WLAN(network.STA_IF)
 sta.active(True)
-sta.disconnect()      # For ESP8266
 
-# Initialize ESP-NOW
-esp = espnow.ESPNow()
-esp.active(True)
+# Configura el botón en el Pin 19 (con resistencia pull-up)
+B1 = Pin(19, Pin.IN, Pin.PULL_UP)
 
-# Define the MAC address of the receiving ESP32 (ESP32 B)
-peer = b'x!\x84\xc68\xb0'
-esp.add_peer(peer)
+# Configura el LED en el Pin 2
+led = Pin(2, Pin.OUT)
+led.value(0)  # LED apagado inicialmente
 
-# Create a function to send data when a button is pressed (optional)
-button_pin = Pin(23, Pin.IN, Pin.PULL_UP)
+# Inicializa ESP-NOW
+e = espnow.ESPNow()
+e.active(True)
 
-# Initialize variables for debouncing
-last_button_state = 1  # Assuming the button is not pressed initially
-debounce_delay = 50  # Adjust this value to your needs (milliseconds)
+# Agrega la dirección MAC del receptor (cambiar con la dirección real)
+mac = b'\xb0\xa72\xd7^\x80'  # MAC del receptor
+e.add_peer(mac)
 
+# Estado previo para evitar envíos redundantes
+previous_state = None
+
+# Bucle principal para detectar el botón y controlar el LED
 while True:
-    # Read the current state of the button
-    current_button_state = button_pin.value()
+    current_state = B1.value()  # Lee el estado del botón
     
-    # Check if the button state has changed
-    if current_button_state != last_button_state:
-        # Wait for a short time to debounce the button
-        utime.sleep_ms(debounce_delay)
+    if current_state != previous_state:  # Detecta un cambio en el estado del botón
+        if current_state == 0:  # Botón presionado
+            led.value(1)  # Enciende el LED
+            e.send(mac, b'ON')  # Enviar mensaje 'ON'
+            print("Mensaje enviado: ON")
+        else:  # Botón liberado
+            led.value(0)  # Apaga el LED
+            e.send(mac, b'OFF')  # Enviar mensaje 'OFF'
+            print("Mensaje enviado: OFF")
         
-        # Read the button state again to make sure it's stable
-        current_button_state = button_pin.value()
-        
-        # If the button state is still different, it's a valid press
-        if current_button_state != last_button_state:
-            if current_button_state == 0:
-                message = "ledOn"
-                print(f"Sending command : {message}")
-                esp.send(peer, message)
-            else:
-                message = "ledOff"
-                print(f"Sending command : {message}")
-                esp.send(peer, message)
-        
-        # Update the last button state
-        last_button_state = current_button_state
-        
+        previous_state = current_state  # Actualiza el estado
