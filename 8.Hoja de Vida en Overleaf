@@ -1,0 +1,71 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Pablo Uzhca}} \\
+    \vspace{5pt}
+    \includegraphics[width=4cm,height=4cm,keepaspectratio]{foto.jpg} \\ % Cambia "foto.jpg" por el nombre de tu archivo de imagen
+    \vspace{5pt}
+    \href{mailto:tucorreo@example.com}{uzhcapablo03@gmail.com} | +593 99 7687 948 | \href{https://linkedin.com/in/tuperfil}{Pablo Eseban Uzhca Ali} | Cuenca, Ecuador
+\end{center}
+
+\vspace{10pt}
+
+\section*{Educación}
+\noindent\textbf{Herlinda Toral-Ciencias} \hfill \textit{2014-2022} \\
+Cuenca, Ecuador \\
+En los grados de 8vo-10mo fui de los mejores en notas y fui responsable en mis actividades.
+
+\vspace{5pt}
+
+\section*{Experiencia Profesional}
+\noindent\textbf{Atención al Cliente} \hfill \textit{Fechas} \\
+Tienda, Cuenca, Ecuador \\
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item Brindé atención amable y eficiente a los clientes.
+    \item Realicé mis tareas con entusiasmo y disposición.
+    \item Fomenté un ambiente positivo para los compradores.
+\end{itemize}
+
+\vspace{5pt}
+
+\section*{Habilidades}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item Manejo de computadoras.
+    \item Rapidez y eficacia en la ejecución de tareas asignadas.
+    \item Compromiso y dedicación en cualquier trabajo.
+\end{itemize}
+
+\vspace{5pt}
+
+\section*{Idiomas}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item Español 
+    \item Inglés (Nivel básico/intermedio)
+\end{itemize}
+
+\vspace{5pt}
+
+\section*{Proyectos}
+\noindent\textbf{Dispositivo de pulso cardiaco} \hfill \textit{2023} \\
+Realize un dispositivo que media el puslo cardiaco con el uso de la programacion y desarrollo codigos y publico en una cuenta de GitHub: 
+https://github.com/PabloUzhca02/Scpm32
+
+\vspace{5pt}
+
+\section*{Referencias}
+\noindent\textbf{Maria Leonor Ali} \\
+Empresa de Confección de Ropa Deportiva \\
+Teléfono: +593 774 7432 \\
+Correo: marialeonor1976@gmail.com
+
+
+\end{document}
